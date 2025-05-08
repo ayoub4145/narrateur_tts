@@ -1,5 +1,8 @@
 from pptx import Presentation
 from gtts import gTTS
+from docx import Document
+from PyPDF2 import PdfReader
+import os
 
 def extract_text_from_pptx(file_path):
     try:
@@ -18,6 +21,13 @@ def extract_text_from_pptx(file_path):
     except Exception as e:
         print(f"An error occurred while extracting text: {e}")
         return []
+def extract_text_from_docx(file):
+    doc = Document(file)
+    return ["\n".join(para.text for para in doc.paragraphs if para.text.strip())]
+
+def extract_text_from_pdf(file):
+    reader = PdfReader(file)
+    return [page.extract_text() for page in reader.pages if page.extract_text()]
 
 def text_to_speech(text, output_path, lang='fr'):
     try:
