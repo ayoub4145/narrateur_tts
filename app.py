@@ -11,12 +11,19 @@ st.markdown("""
 """)
 uploaded_file = st.file_uploader("Uploader un fichier .pptx", type=["pptx"])
 # Définir le répertoire de sortie
+output_dir = "output"
+
+# Créer le répertoire de sortie s'il n'existe pas
+if not os.path.exists(output_dir):
+    os.makedirs(output_dir)
+
+# Définir le répertoire de sortie
 if uploaded_file:
     slides = extract_text_from_pptx(uploaded_file)
     for i, slide in enumerate(slides):
         st.markdown(f"### Diapositive {i+1}")
         st.text(slide)
-        output_file = f"audio_slide_{i+1}.mp3"
+        output_file = os.path.join(output_dir, f"audio_slide_{i+1}.mp3")
         text_to_speech(slide, output_file)
         st.audio(output_file)
 
