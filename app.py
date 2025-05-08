@@ -1,5 +1,5 @@
 import streamlit as st
-from narrator import extract_text_from_pptx, text_to_speech,clean_output_directory
+from narrator import extract_text_from_pptx, text_to_speech
 import os
 st.title("Narrateur vocal de présentation PowerPoint")
 st.markdown("""
@@ -15,7 +15,7 @@ if uploaded_file:
     for i, slide in enumerate(slides):
         st.markdown(f"### Diapositive {i+1}")
         st.text(slide)
-        output_file = f"output/audio_slide_{i+1}.mp3"
+        output_file = f"audio_slide_{i+1}.mp3"
         text_to_speech(slide, output_file)
         st.audio(output_file)
 
