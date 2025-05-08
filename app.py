@@ -10,6 +10,18 @@ st.markdown("""
     3. Vous pourrez écouter chaque diapositive en cliquant sur le lecteur audio.
 """)
 uploaded_file = st.file_uploader("Uploader un fichier", type=["pptx", "docx", "pdf"])
+# Sélection de la langue
+lang = st.selectbox("Langue", ["fr", "en", "es"])
+# Sélection du ton (accent / région)
+tld_options = {
+    "fr": ["com (Standard)", "ca (Québec)"],
+    "en": ["com (US)", "co.uk (UK)", "com.au (Australia)", "co.in (India)"],
+    "es": ["com (Spain)", "com.mx (Mexico)"]
+}
+tld_labels = tld_options.get(lang, ["com"])
+tld_label = st.selectbox("Accent / Ton", tld_labels)
+tld = tld_label.split(" ")[0]  # extrait juste 'com', 'ca', etc.
+
 # Définir le répertoire de sortie
 output_dir = "output"
 
@@ -33,7 +45,7 @@ if uploaded_file:
     for i, slide_text in enumerate(slides):
         if slide_text.strip():
             output_file = f"audio_page_{i+1}.mp3"
-            text_to_speech(slide_text, output_file)
+            text_to_speech(slide_text, output_file,lang=lang,tld=tld)
             st.markdown(f"### Page {i+1}")
             st.text(slide_text.strip())
             st.audio(output_file)

@@ -29,9 +29,9 @@ def extract_text_from_pdf(file):
     reader = PdfReader(file)
     return [page.extract_text() for page in reader.pages if page.extract_text()]
 
-def text_to_speech(text, output_path, lang='fr'):
+def text_to_speech(text, output_path, lang='fr',tld='com'):
     try:
-        tts = gTTS(text=text, lang=lang)
+        tts = gTTS(text=text, lang=lang,tld=tld)
         tts.save(output_path)
     except Exception as e:
         print(f"An error occurred while generating audio: {e}")
