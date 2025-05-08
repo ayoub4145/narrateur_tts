@@ -1,5 +1,5 @@
 import streamlit as st
-from narrator import extract_text_from_pptx, text_to_speech
+from narrator import extract_text_from_pptx, text_to_speech,clean_output_directory
 import os
 st.title("Narrateur vocal de présentation PowerPoint")
 st.markdown("""
@@ -11,7 +11,7 @@ st.markdown("""
 uploaded_file = st.file_uploader("Uploader un fichier .pptx", type=["pptx"])
 # Définir le répertoire de sortie
 output_dir = "output"
-# clean_output_directory(output_dir)  # Nettoyer le répertoire de sortie
+clean_output_directory(output_dir)  # Nettoyer le répertoire de sortie
 if uploaded_file:
     slides = extract_text_from_pptx(uploaded_file)
     for i, slide in enumerate(slides):
