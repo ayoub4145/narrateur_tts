@@ -5,22 +5,24 @@ st.set_page_config(page_title="Narrateur vocal de présentation PowerPoint", pag
 st.title("Narrateur vocal de documents (.pptx, .docx, .pdf)")
 st.markdown("""
     ### Instructions
-    1. Uploadez un fichier (.pptx,.pdf,.docx).
-    2. Le texte de chaque page/diapositive sera extrait et converti en audio.
-    3. Vous pourrez écouter chaque diapositive en cliquant sur le lecteur audio.
+    1. Choisissez la langue et le ton (accent/région) de la voix.
+    2. Uploadez un fichier (.pptx,.pdf,.docx).
+    3. Le texte de chaque page/diapositive sera extrait et converti en audio.
+    4. Vous pourrez écouter chaque diapositive en cliquant sur le lecteur audio.
 """)
-uploaded_file = st.file_uploader("Uploader un fichier", type=["pptx", "docx", "pdf"])
-# Sélection de la langue
-lang = st.selectbox("Langue", ["fr", "en", "es"])
-# Sélection du ton (accent / région)
 tld_options = {
     "fr": ["com (Standard)", "ca (Québec)"],
     "en": ["com (US)", "co.uk (UK)", "com.au (Australia)", "co.in (India)"],
     "es": ["com (Spain)", "com.mx (Mexico)"]
 }
+# Sélection de la langue
+lang = st.selectbox("Langue", ["fr", "en", "es"])
 tld_labels = tld_options.get(lang, ["com"])
+# Sélection du ton (accent / région)
 tld_label = st.selectbox("Accent / Ton", tld_labels)
 tld = tld_label.split(" ")[0]  # extrait juste 'com', 'ca', etc.
+uploaded_file = st.file_uploader("Uploader un fichier", type=["pptx", "docx", "pdf"])
+
 
 # Définir le répertoire de sortie
 output_dir = "output"
