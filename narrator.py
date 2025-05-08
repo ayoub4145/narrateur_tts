@@ -1,7 +1,5 @@
 from pptx import Presentation
 from gtts import gTTS
-import os
-import glob
 
 def extract_text_from_pptx(file_path):
     try:

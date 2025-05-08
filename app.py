@@ -1,6 +1,7 @@
 import streamlit as st
 from narrator import extract_text_from_pptx, text_to_speech
 import os
+st.set_page_config(page_title="Narrateur vocal de présentation PowerPoint", page_icon=":microphone:", layout="wide")
 st.title("Narrateur vocal de présentation PowerPoint")
 st.markdown("""
     ### Instructions
