@@ -53,4 +53,4 @@ if uploaded_file:
             st.audio(output_file)
 
 
-st.markdown("Developpé par [Ayoub BERHILI](https://github.com/ayoub4145)")
+# st.markdown("Developpé par [Ayoub BERHILI](https://github.com/ayoub4145)")
